@@ -1,0 +1,27 @@
+<configuration scan="true">
+    
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/var/log/cdn-api/cdn-api.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/cdn-api/cdn-api.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="DEBUG">
+	    <appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</root>
+
+	<logger name="org.springframework" level="DEBUG" />
+	<logger name="org.apache" level="DEBUG" />
+
+</configuration>

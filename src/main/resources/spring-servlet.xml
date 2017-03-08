@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd 
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd 
+          http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd 
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+	
+	<import resource="spring-redis.xml"/>
+	
+	<context:component-scan base-package="com.gochinatv.cdn" />
+   
+	<mvc:annotation-driven/>
+	<mvc:resources location="/cdn.json" mapping="*.json"/>
+	
+	<!-- <mvc:interceptors>
+      <mvc:interceptor>
+        <mvc:mapping path="/v1/getPlayUrl"/>
+        <bean class="com.gochinatv.cdn.api.framework.ControllerInterceptor"/>
+      </mvc:interceptor>
+    </mvc:interceptors> -->
+    
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+      <property name="basenames">
+			<list>
+			   <value>classpath:test/conf</value>
+			</list>
+	  </property>
+	</bean>
+    
+    <aop:config>
+	  <aop:aspect ref="logAspect">
+	    <aop:pointcut expression="${CLS}" id="serviceLogPointcut"/>
+	    <aop:around method="around" pointcut-ref="serviceLogPointcut"/>
+	    <aop:after-returning method="afterReturning" arg-names="point,retValue" returning="retValue" pointcut-ref="serviceLogPointcut"/>
+	    <aop:after-throwing method="doThrowing" throwing="ex" pointcut-ref="serviceLogPointcut"/>
+	  </aop:aspect>
+	</aop:config>
+	
+	
+	<context:property-placeholder location="file:///d:/conf.properties" file-encoding="utf-8"/>
+
+</beans>
