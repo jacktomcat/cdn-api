@@ -34,6 +34,8 @@
 	  </property>
 	</bean> -->
     
+    <!-- <bean class="com.gochinatv.cdn.api.tasks.VideoTask"/> -->
+    
     <aop:config>
 	  <aop:aspect ref="logAspect">
 	    <aop:pointcut expression="execution(* com.gochinatv.cdn.api.service.impl..*.*(..))" id="serviceLogPointcut"/>
@@ -43,6 +45,7 @@
 	  </aop:aspect>
 	</aop:config>
 	
-	<context:property-placeholder location="classpath:conf.properties" file-encoding="utf-8"/>
+	<context:property-placeholder location="classpath:conf.properties,file:///opt/conf.properties" 
+	ignore-resource-not-found="true" file-encoding="utf-8"/>
 
 </beans>
