@@ -34,8 +34,6 @@
 	  </property>
 	</bean> -->
     
-    <!-- <bean class="com.gochinatv.cdn.api.tasks.VideoTask"/> -->
-    
     <aop:config>
 	  <aop:aspect ref="logAspect">
 	    <aop:pointcut expression="execution(* com.gochinatv.cdn.api.service.impl..*.*(..))" id="serviceLogPointcut"/>
