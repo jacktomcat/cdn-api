@@ -17,14 +17,19 @@
 	<mvc:annotation-driven/>
 	<mvc:resources location="/cdn.json" mapping="*.json"/>
 
-	<mvc:redirect-view-controller redirect-url="/test/index" path="/"/>
+	<mvc:redirect-view-controller redirect-url="/index" path="/"/>
 	
-	<!-- <mvc:interceptors>
+	<mvc:interceptors>
       <mvc:interceptor>
         <mvc:mapping path="/v1/getPlayUrl"/>
         <bean class="com.gochinatv.cdn.api.framework.ControllerInterceptor"/>
       </mvc:interceptor>
-    </mvc:interceptors> -->
+      <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="locale" />
+		</bean>
+    </mvc:interceptors>
+    
+     <mvc:resources location="/resources/" mapping="/resources/**" />
     
 <!--     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
       <property name="basenames">
@@ -33,6 +38,26 @@
 			</list>
 	  </property>
 	</bean> -->
+
+	<!-- 配置国际化资源文件路径 -->
+	<!-- <bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>classpath:message/messages</value>
+		</property>
+	</bean> -->
+	
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    	<property name="basename" value="classpath:message/messages" />
+    	<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+
+	<!-- 基于Cookie的本地化解析器 -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieMaxAge" value="604800" />
+		<property name="defaultLocale" value="zh_CN" />
+		<property name="cookieName" value="language"/>
+	</bean>
     
     <aop:config>
 	  <aop:aspect ref="logAspect">

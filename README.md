@@ -49,3 +49,4 @@ mvn clean package -P prod
 ####1、国际化
 ####2、分支项目创建
 ####3、json、xml同时支持的问题
+####4、controller测试单例和多例模式

@@ -1,6 +1,8 @@
 package com.gochinatv.cdn.api.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,7 +12,7 @@ import com.gochinatv.cdn.api.controller.base.BaseHandler;
 
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("")
 public class IndexController extends BaseHandler{
 
 	
@@ -19,9 +21,9 @@ public class IndexController extends BaseHandler{
 	 * 表示项目直接访问根目录直接跳转至  /test/index
 	 * @return
 	 */
-	@RequestMapping("/index")
+	@RequestMapping("/logout")
     @ResponseBody
-	public JSONObject index() {
+	public JSONObject logout() {
 		JSONObject result = null;
 		try {
 			result = new JSONObject();
@@ -31,6 +33,11 @@ public class IndexController extends BaseHandler{
 		    result = failure(e.getMessage());
 		}
 		return result;
+	}
+	
+	@RequestMapping("/index")
+	public String index(HttpServletRequest request) {
+		return "index.jsp";
 	}
 	
 	
