@@ -49,8 +49,9 @@ mvn clean package -P prod
 
 ### git分支创建并合并
 ```
-1、Team -> Switch To -> New Brach(输入名称，创建，提交) -> 分支操作（此时master主干也可以操作）并分别提交至各自的分支
-2、切换至master -> Team -> Merge -> 选择分支版本 即可进行合并，（Add to Index）如果出现冲突解决冲突
+1、Team -> Switch To -> New Brach(输入名称，创建，提交) -> 分支操作(此时master主干也可以操作)并分别提交至各自的分支
+2、切换至master -> Team -> Merge -> (将分支信息合并到主干，进行merge操作，选择local-->我最后一次提交的分支，点击merge即可)、Add to Index
+3、这个时候通常情况下是没有错误的，接下来要进行一步操作，很危险，就是将最新版本的master给pull下来；修改完冲突之后，进行提交，并推送到主干即可
 ```
 
 ### TODO
