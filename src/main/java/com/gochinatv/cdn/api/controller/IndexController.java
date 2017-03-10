@@ -1,7 +1,9 @@
 package com.gochinatv.cdn.api.controller;
 
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,15 @@ public class IndexController extends BaseHandler{
 	
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request) {
+		return "index.jsp";
+	}
+	
+	
+	@RequestMapping("/change")
+	public String change(HttpServletRequest request,HttpServletResponse response) {
+		String language = request.getParameter("language");
+		//Cookie cookie = new Cookie("language", language);
+		//response.addCookie(cookie);
 		return "index.jsp";
 	}
 	

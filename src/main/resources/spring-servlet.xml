@@ -24,28 +24,16 @@
         <mvc:mapping path="/v1/getPlayUrl"/>
         <bean class="com.gochinatv.cdn.api.framework.ControllerInterceptor"/>
       </mvc:interceptor>
-      <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+      <!-- <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 			<property name="paramName" value="locale" />
-		</bean>
+	  </bean> -->
     </mvc:interceptors>
-    
-     <mvc:resources location="/resources/" mapping="/resources/**" />
-    
-<!--     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-      <property name="basenames">
-			<list>
-			   <value>classpath:test/conf</value>
-			</list>
-	  </property>
-	</bean> -->
 
-	<!-- 配置国际化资源文件路径 -->
-	<!-- <bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename">
-			<value>classpath:message/messages</value>
-		</property>
-	</bean> -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="" />
+        <property name="suffix" value="" /><!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+    </bean> 
 	
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
     	<property name="basename" value="classpath:message/messages" />

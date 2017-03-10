@@ -5,13 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function change(lg){
+	document.cookie="language="+lg;
+	location.href='change?language='+lg
+}
+
+</script>
 </head>
 <body>
 
 <spring:message code="index.user.name" text="Nothing"></spring:message>
 <spring:message code="index.user.desc"></spring:message>
 <br/>
-    <a href="">中文</a>
-    <a href="">英文</a>
+    <a onclick="change('zh_CN')" href="javascript:void(0);">中文</a>
+    <a onclick="change('en')" href="javascript:void(0);">英文</a>
 </body>
 </html>

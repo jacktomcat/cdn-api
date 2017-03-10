@@ -43,10 +43,10 @@ mvn clean package -P prod
 
 ### spring要点
 1、@Lazy(false) bean的加载时机 <br>
-2、mvc:redirect-view-controller redirect-url
+2、mvc:redirect-view-controller redirect-url<br>
+3、基于cookie的国际化操作，cdn-api/index -> index.jsp 中英文切换
 
 ### TODO
-####1、国际化
-####2、分支项目创建
-####3、json、xml同时支持的问题
-####4、controller测试单例和多例模式
+####1、分支项目创建
+####2、json、xml同时支持的问题
+####3、controller测试单例和多例模式
