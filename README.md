@@ -46,7 +46,14 @@ mvn clean package -P prod
 2、mvc:redirect-view-controller redirect-url<br>
 3、基于cookie的国际化操作，cdn-api/index -> index.jsp 中英文切换
 
+
+### git分支创建并合并
+```
+1、Team -> Switch To -> New Brach(输入名称，创建，提交) -> 分支操作（此时master主干也可以操作）并分别提交至各自的分支
+2、切换至master -> Team -> Merge -> 选择分支版本 即可进行合并，（Add to Index）如果出现冲突解决冲突
+```
+
 ### TODO
-####1、分支项目创建
+####1、svn分支项目创建
 ####2、json、xml同时支持的问题
 ####3、controller测试单例和多例模式
