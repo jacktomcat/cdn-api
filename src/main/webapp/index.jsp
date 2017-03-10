@@ -25,6 +25,6 @@ function change(lg){
     <br>
     master 主干创建    
 
-    v2017.03.10 分支创建
+    v2017.03.11 新git命令行创建分并提交～～～～～
 </body>
 </html>
