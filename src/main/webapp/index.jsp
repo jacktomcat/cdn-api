@@ -20,5 +20,9 @@ function change(lg){
 <br/>
     <a onclick="change('zh_CN')" href="javascript:void(0);">中文</a>
     <a onclick="change('en')" href="javascript:void(0);">英文</a>
+    <br>
+    <br>
+    master 主干创建    
+    
 </body>
 </html>
