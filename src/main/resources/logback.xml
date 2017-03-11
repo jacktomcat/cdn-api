@@ -21,7 +21,7 @@
 		<appender-ref ref="FILE" />
 	</root>
 
-	<logger name="org.springframework" level="DEBUG" />
-	<logger name="org.apache" level="DEBUG" />
+	<logger name="org.springframework" level="ERROR" />
+	<logger name="org.apache" level="ERROR" />
 
 </configuration>

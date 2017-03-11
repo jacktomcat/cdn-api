@@ -54,7 +54,7 @@ mvn clean package -P prod
 3、这个时候通常情况下是没有错误的，接下来要进行一步操作，很危险，就是将最新版本的master给pull下来；修改完冲突之后，进行提交，并推送到主干即可
 ```
 
-###1、同时支持json、xml输出  
+###同时支持json、xml输出  
 ```
 需要在spring-servlet.xml中配置消息转换器xml、json
 http://localhost:8080/cdn-api/output_format   输出xml
@@ -68,6 +68,9 @@ Accept application/json   输出json
 ```
 
 ### TODO
-####1、svn分支项目创建
-####2、controller测试单例和多例模式
-####3、spring shiro cas单点登录
+####1、controller测试单例和多例模式
+```
+ServletRequestListener request 模式监控 通过浏览器request的创建和销毁
+```
+####2、spring shiro cas单点登录
+####

@@ -35,7 +35,7 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
     </bean> 
     
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" scope="">
 		<property name="messageConverters">
 			<list>
 				<ref bean="jsonMessageConverter"/>

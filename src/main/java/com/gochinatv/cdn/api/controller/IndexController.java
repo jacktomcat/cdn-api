@@ -3,6 +3,8 @@ package com.gochinatv.cdn.api.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,8 +14,14 @@ import com.gochinatv.cdn.api.entity.User;
 
 @Controller
 @RequestMapping("")
-public class IndexController extends BaseHandler{
+//@Scope("singleton")
+//@Scope("prototype")
+//@Scope("request")
+@Scope("session")
 
+public class IndexController extends BaseHandler{
+   
+	private int number = 0;
 	
 	/**
 	 * <mvc:redirect-view-controller redirect-url="/index" path="/"/>
@@ -21,7 +29,9 @@ public class IndexController extends BaseHandler{
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public String index(HttpServletRequest request) {
+	public /*synchronized*/ String index(HttpServletRequest request) {
+		number++;
+		System.out.println("=============number===========:"+number);
 		return "index";
 	}
 	
