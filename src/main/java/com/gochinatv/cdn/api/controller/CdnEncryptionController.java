@@ -47,42 +47,6 @@ public class CdnEncryptionController extends BaseHandler{
 		return result;
 	}
 	
-	
-	@RequestMapping("/update")
-    @ResponseBody
-	public JSONObject update() {
-		JSONObject result = null;
-		try {
-			Properties props = new Properties();
-			InputStream in = new BufferedInputStream(new FileInputStream("D:\\Program Files\\apache-tomcat-7.0.62\\webapps\\cdn-api\\WEB-INF\\classes\\test\\conf.properties"));
-            props.load(in);
-            
-            OutputStream fos = new FileOutputStream("D:\\Program Files\\apache-tomcat-7.0.62\\webapps\\cdn-api\\WEB-INF\\classes\\test\\conf.properties");
-            props.setProperty("CLS", "execution(* com.gochinatv.cdn.api.service.impl123..*.*(..))");
-			props.store(fos, "update==============================================");
-            
-			
-			Parameters params = new Parameters();
-			// Read data from this file
-			File propertiesFile = new File("D:\\Program Files\\apache-tomcat-7.0.62\\webapps\\cdn-api\\WEB-INF\\classes\\test\\conf.properties");
-
-			/*ReloadingFileBasedConfigurationBuilder<Configuration> builder =
-		    new ReloadingFileBasedConfigurationBuilder<Configuration>(PropertiesConfiguration.class)
-		    .configure(params.fileBased()
-		        .setFile(propertiesFile));
-		PeriodicReloadingTrigger trigger = new PeriodicReloadingTrigger(builder.getReloadingController(),
-		    null, 1, TimeUnit.MINUTES);
-		trigger.start();*/			
-            result = success(result);
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage(),e);
-			result = failure(e.getMessage());
-		}
-		return result;
-	}
-	
-	
     /**
      * 获取动态防盗链的码
      * @param token
