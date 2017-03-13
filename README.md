@@ -45,6 +45,7 @@ mvn clean package -P prod
 1、@Lazy(false) bean的加载时机 <br>
 2、mvc:redirect-view-controller redirect-url<br>
 3、基于cookie的国际化操作，cdn-api/index -> index.jsp 中英文切换
+4、spring bean scope(singleton,request,prototype,session) 区别 -> IndexController 可以使用ab测试
 
 
 ### git分支创建并合并
@@ -68,9 +69,8 @@ Accept application/json   输出json
 ```
 
 ### TODO
-####1、controller测试单例和多例模式
 ```
 ServletRequestListener request 模式监控 通过浏览器request的创建和销毁
 ```
-####2、spring shiro cas单点登录
+####1、spring shiro cas单点登录
 ####
