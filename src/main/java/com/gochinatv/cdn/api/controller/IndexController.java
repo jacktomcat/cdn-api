@@ -4,23 +4,33 @@ package com.gochinatv.cdn.api.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.gochinatv.cdn.api.controller.base.BaseHandler;
 import com.gochinatv.cdn.api.entity.User;
+import com.gochinatv.cdn.api.service.CdnEncryptionService;
 
 
 @Controller
 @RequestMapping("")
 //@Scope("singleton")
 //@Scope("prototype")
-@Scope("request")
+//@Scope("request")
 //@Scope("session")
 public class IndexController extends BaseHandler{
    
 	private int number = 0;
+	
+	//测试service中的scope的作用域
+	@Autowired
+	private CdnEncryptionService cdnEncryptionService1;
+	
+	//测试service中的scope的作用域
+	@Autowired
+	private CdnEncryptionService cdnEncryptionService2;
 	
 	/**
 	 * <mvc:redirect-view-controller redirect-url="/index" path="/"/>
@@ -32,6 +42,8 @@ public class IndexController extends BaseHandler{
 	public /*synchronized*/ String index() {
 		number++;
 		System.out.println("=============number===========:"+number);
+		cdnEncryptionService1.testScope();
+		cdnEncryptionService2.testScope();
 		return "index";
 	}
 	
