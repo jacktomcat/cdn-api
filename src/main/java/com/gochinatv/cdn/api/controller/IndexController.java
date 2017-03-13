@@ -16,9 +16,8 @@ import com.gochinatv.cdn.api.entity.User;
 @RequestMapping("")
 //@Scope("singleton")
 //@Scope("prototype")
-//@Scope("request")
-@Scope("session")
-
+@Scope("request")
+//@Scope("session")
 public class IndexController extends BaseHandler{
    
 	private int number = 0;
@@ -28,8 +27,9 @@ public class IndexController extends BaseHandler{
 	 * 表示项目直接访问根目录直接跳转至  /index.jsp
 	 * @return
 	 */
+	
 	@RequestMapping("/index")
-	public /*synchronized*/ String index(HttpServletRequest request) {
+	public /*synchronized*/ String index() {
 		number++;
 		System.out.println("=============number===========:"+number);
 		return "index";
