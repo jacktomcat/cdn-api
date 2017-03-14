@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 
 public interface CdnEncryptionService{
    
+	public void testScope();
+	
 	
 	 /**
      * 获取动态防盗链的码

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.gochinatv.cdn.api.commons.ConstantUtils;
@@ -17,6 +18,8 @@ import com.gochinatv.cdn.api.service.RedisService;
 
 
 @Service
+//@Scope("singleton")
+@Scope("prototype")
 public class CdnEncryptionServiceImpl implements CdnEncryptionService{
     
 	private Logger logger = LoggerFactory.getLogger(CdnEncryptionServiceImpl.class);
@@ -27,8 +30,12 @@ public class CdnEncryptionServiceImpl implements CdnEncryptionService{
 	@Value("${CDN_KEY}")
 	private String CDN_KEY;
 	
-	/*@Value("${H5.LIVE_CND_HOST}")
-	private String LIVE_CND_HOST;*/
+	private int number = 0;
+	
+	public void testScope(){
+		number++;
+		System.out.println("============service number=======:"+number);
+	}
 	
 	 /**
      * 获取动态防盗链的码
@@ -39,15 +46,6 @@ public class CdnEncryptionServiceImpl implements CdnEncryptionService{
 		JSONObject rstObj = null;
 		String value = redisService.get(ConstantUtils.SECURITY_CDN_KEY);
 		if (StringUtils.isEmpty(value)) {
-			/*String[] urls = CDN_KEY.split(",");
-			for (String url : urls) {
-				try{
-					value = HttpClientTools.Get(url);
-				}catch(Exception e){
-					logger.error("************cdn-api 获取 {} 失败************",url);
-					continue;
-				}
-			}*/
 			try{
 				value = HttpClientTools.Get(CDN_KEY);
 				redisService.setExpire(ConstantUtils.SECURITY_CDN_KEY, value, ConstantUtils.TIME_3600);
@@ -78,11 +76,6 @@ public class CdnEncryptionServiceImpl implements CdnEncryptionService{
 		String playUrl = getProxyEncryptPlayUrl(path, query, keyJson.getString("key"),st);
 		String host = url.replaceAll(path + query, "");
 		rstObj.put("url", host + playUrl);
-		/*String key = String.format(ConstantUtils.SECURITY_PLAY_URL, HttpParamsUtils.replaceForceUpdate(HttpParamsUtils.getRequest()));
-		if(!StringUtils.isEmpty(rstObj.getString("url"))){
-			String value = rstObj.toString();
-			redisService.setExpire(key, value, ConstantUtils.TIME_18000);
-		}*/
 		return rstObj;
 	}
 	
@@ -95,9 +88,6 @@ public class CdnEncryptionServiceImpl implements CdnEncryptionService{
 	 * @throws Exception
 	 */
 	private String getProxyEncryptPlayUrl(String path, String query, String pass, int st) throws Exception {
-		//String key = String.format(SECURITY_PLAY_URL, "type:EncryptPlayUrl,playUrl:" + (path + query) + ",pass:" + pass);
-		//String value = redisService.get(key);
-		//if (StringUtils.isEmpty(value)) {
 		StringBuilder url = new StringBuilder(path);
 		url.append("?");
 		url.append(query.equals("") ? "st=" : (query + "&st="));
@@ -110,8 +100,6 @@ public class CdnEncryptionServiceImpl implements CdnEncryptionService{
 
 		url.append("&token=");
 		url.append(token);
-			//redisService.setExpire(key, value, ConstantUtils.TIME_18000);//5小时的缓存时间
-		//}
 		return url.toString();
 	}
 	
