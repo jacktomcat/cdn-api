@@ -73,4 +73,4 @@ Accept application/json   输出json
 ServletRequestListener request 模式监控 通过浏览器request的创建和销毁
 ```
 ####1、spring shiro cas单点登录
-####
+####2、set测试一个set<User>是否有重复？重写hashcode，equals
