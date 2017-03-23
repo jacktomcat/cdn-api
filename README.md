@@ -69,10 +69,11 @@ Accept application/json   输出json
 ```
 
 ### ajax 非responseBody形式返回，而是返回jsp页面的形式index.jsp -> ajax_result.jsp
+### hashset 测试对象是否有重复，重写hashcode和equals方法  -> 测试用例TestSetUser.java
+
 
 ### TODO
 ```
 ServletRequestListener request 模式监控 通过浏览器request的创建和销毁
 ```
 ####1、spring shiro cas单点登录
-####2、set测试一个set<User>是否有重复？重写hashcode，equals
