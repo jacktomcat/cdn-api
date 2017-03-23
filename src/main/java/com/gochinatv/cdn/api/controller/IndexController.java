@@ -3,7 +3,6 @@ package com.gochinatv.cdn.api.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -60,7 +59,11 @@ public class IndexController extends BaseHandler{
 		return user;
 	}
 	
-	
+	@RequestMapping("/ajax_result")
+	public String ajax_result(HttpServletRequest request,HttpServletResponse response) {
+		request.setAttribute("name", "zhangsan");
+		return "ajax_result";
+	}
 	
 	/**
 	 * 消息国际化，但是此方法是多余的方法，只需要在jsp中通过js修改客户端cookie的名称即可

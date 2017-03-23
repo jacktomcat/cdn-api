@@ -5,12 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
 function change(lg){
 	document.cookie="language="+lg;
 	location.href='change?language='+lg
 }
 
+function ajax_click() {
+	$.get("ajax_result", function(data) {
+		$("#htmls").html(data);
+	});
+}
 </script>
 </head>
 <body>
@@ -26,5 +32,11 @@ function change(lg){
     master 主干创建    
 
     v2017.03.11 新git命令行创建分并提交～～～～～
+    
+    
+    <br/>
+    <!-- 测试ajax非response Body的形式返回 -->
+    <a onclick="ajax_click()" href="javascript:void(0);">ajax调用</a>
+    <div id="htmls"></div>
 </body>
 </html>

@@ -68,6 +68,8 @@ Accept application/xml    输出xml
 Accept application/json   输出json
 ```
 
+### ajax 非responseBody形式返回，而是返回jsp页面的形式index.jsp -> ajax_result.jsp
+
 ### TODO
 ```
 ServletRequestListener request 模式监控 通过浏览器request的创建和销毁

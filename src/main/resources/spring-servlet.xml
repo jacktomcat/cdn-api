@@ -16,6 +16,7 @@
    
 	<mvc:annotation-driven/>
 	<mvc:resources location="/cdn.json" mapping="*.json"/>
+	<mvc:resources location="/js/" mapping="/js/*.js"/>
 
 	<mvc:redirect-view-controller redirect-url="/index" path="/"/>
 	
