@@ -45,10 +45,10 @@ mvn clean package -P prod
 1、@Lazy(false) bean的加载时机 <br>
 2、mvc:redirect-view-controller redirect-url<br>
 3、<br/>
-   3.1 基于cookie的国际化操作，cdn-api/index -> index.jsp 中英文切换<br/>
-   3.2 后台业务代码的方式获取国际化资源文件<br/>
-   3.3 Locale 语言设置<br/>
-   3.4 TimeZone时区设置<br/>
+   + 基于cookie的国际化操作，cdn-api/index -> index.jsp 中英文切换<br/>
+   + 后台业务代码的方式获取国际化资源文件<br/>
+   + Locale 语言设置<br/>
+   + TimeZone时区设置<br/>
 4、spring bean scope(singleton,request,prototype,session) 区别 -> IndexController 可以使用ab测试<br/>
 5、spring @Value 在properties文件里面对 ``String```,  ``` Array ```, ```List```, ``` Map``,  的动态解析的支持
 
