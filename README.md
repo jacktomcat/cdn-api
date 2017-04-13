@@ -72,6 +72,9 @@ Accept application/xml    输出xml
 Accept application/json   输出json
 ```
 
+### Guava 
+ + LoadingCache 本地缓存的支持
+
 ### ajax 非responseBody形式返回，而是返回jsp页面的形式index.jsp -> ajax_result.jsp
 ### hashset 测试对象是否有重复，重写hashcode和equals方法  -> 测试用例TestSetUser.java
 

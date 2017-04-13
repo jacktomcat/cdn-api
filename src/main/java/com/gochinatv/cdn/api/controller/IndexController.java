@@ -3,7 +3,6 @@ package com.gochinatv.cdn.api.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -17,11 +16,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.gochinatv.cdn.api.controller.base.BaseHandler;
 import com.gochinatv.cdn.api.entity.User;
 import com.gochinatv.cdn.api.service.CdnEncryptionService;
+import com.gochinatv.cdn.api.service.LocalCacheImpl;
 
 
 @Controller
@@ -51,6 +52,9 @@ public class IndexController extends BaseHandler{
 	@Value("#{PropertySplitter.map('${address}')}")
 	private Map<String, String> userMap;
 	
+	@Autowired
+	private LocalCacheImpl localCacheImpl;
+	
 	/**
 	 * <mvc:redirect-view-controller redirect-url="/index" path="/"/>
 	 * 表示项目直接访问根目录直接跳转至  /index.jsp
@@ -67,9 +71,15 @@ public class IndexController extends BaseHandler{
 	}
 	
 	@RequestMapping("/value_support")
-	public /*synchronized*/ String value_support() {
+	public String value_support() {
 		System.out.println("==========CDN_KEY:==="+CDN_KEY.get(0)+"========"+CDN_KEY.get(1));
 		System.out.println(userMap.get("name1")+"====="+userMap.get("name2"));
+		return "index";
+	}
+	
+	@RequestMapping("/local_value/{id}")
+	public /*synchronized*/ String getValue(@PathVariable int id) {
+		System.out.println(localCacheImpl.getValue(id));
 		return "index";
 	}
 	
