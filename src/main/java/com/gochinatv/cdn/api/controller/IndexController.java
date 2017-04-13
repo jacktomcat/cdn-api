@@ -3,12 +3,16 @@ package com.gochinatv.cdn.api.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -41,6 +45,12 @@ public class IndexController extends BaseHandler{
 	@Autowired
 	private ReloadableResourceBundleMessageSource messageSource;
 	
+	@Value("#{'${CDN_KEY}'.split(',')}")
+	private List<String> CDN_KEY;
+
+	@Value("#{PropertySplitter.map('${address}')}")
+	private Map<String, String> userMap;
+	
 	/**
 	 * <mvc:redirect-view-controller redirect-url="/index" path="/"/>
 	 * 表示项目直接访问根目录直接跳转至  /index.jsp
@@ -53,6 +63,13 @@ public class IndexController extends BaseHandler{
 		System.out.println("=============number===========:"+number);
 		cdnEncryptionService1.testScope();
 		cdnEncryptionService2.testScope();
+		return "index";
+	}
+	
+	@RequestMapping("/value_support")
+	public /*synchronized*/ String value_support() {
+		System.out.println("==========CDN_KEY:==="+CDN_KEY.get(0)+"========"+CDN_KEY.get(1));
+		System.out.println(userMap.get("name1")+"====="+userMap.get("name2"));
 		return "index";
 	}
 	
