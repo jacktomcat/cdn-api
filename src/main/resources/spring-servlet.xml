@@ -74,7 +74,7 @@
 	<context:property-placeholder location="classpath:conf.properties,file:///opt/conf.properties" 
 	ignore-resource-not-found="true" file-encoding="utf-8"/>
     
-    <bean id="localCacheImpl" class="com.gochinatv.cdn.api.service.LocalCacheImpl" init-method="init">
+    <bean id="localCacheImpl" class="com.gochinatv.cdn.api.service.impl.LocalCacheImpl" init-method="init">
        <property name="importPath" value="/dev/hour/export"/>
     </bean>
     

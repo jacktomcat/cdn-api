@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gochinatv.cdn.api.controller.base.BaseHandler;
 import com.gochinatv.cdn.api.entity.User;
 import com.gochinatv.cdn.api.service.CdnEncryptionService;
-import com.gochinatv.cdn.api.service.LocalCacheImpl;
+import com.gochinatv.cdn.api.service.impl.LocalCacheImpl;
 
 
 @Controller

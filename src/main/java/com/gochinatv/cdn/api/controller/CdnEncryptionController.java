@@ -1,16 +1,8 @@
 package com.gochinatv.cdn.api.controller;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Properties;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

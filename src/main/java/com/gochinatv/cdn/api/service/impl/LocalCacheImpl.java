@@ -1,4 +1,4 @@
-package com.gochinatv.cdn.api.service;
+package com.gochinatv.cdn.api.service.impl;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
