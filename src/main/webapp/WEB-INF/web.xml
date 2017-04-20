@@ -5,7 +5,7 @@
 	version="3.0">
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value></param-value>
+		<param-value>classpath:spring-service.xml</param-value>
 	</context-param>
 
 	<listener>
