@@ -1,19 +1,25 @@
 package com.gochinatv.cdn.api.test.service.impl;
 
-import com.gochinatv.cdn.api.test.service.VideoService;
 
 
-public class TvVideoServiceImpl implements VideoService{
-  
-	private int cache;
+import java.util.ArrayList;
+import java.util.List;
 
-	public void setCache(int cache) {
-		this.cache = cache;
+import com.gochinatv.cdn.api.test.service.WrapperVideo;
+
+
+public class TvVideoServiceImpl extends WrapperVideo{
+
+	@Override
+	public List<String> getVideoList() {
+		List<String> videoList = new ArrayList<>();
+		videoList.add("我是TvVideoServiceImpl具体实现 － 人民的名义");
+		return videoList;
 	}
 
-	public int getCache() {
-		return cache;
+	@Override
+	public String setTargetName() {
+		return "TvVideoServiceImpl";
 	}
-	
 	
 }

@@ -18,4 +18,8 @@
        <property name="cache" value="50"/>
     </bean>
     
+    <bean id="h5VideoServiceImpl" class="com.gochinatv.cdn.api.test.service.impl.H5VideoServiceImpl"/>
+    
+    <bean id="mobileVideoServiceImpl" class="com.gochinatv.cdn.api.test.service.impl.MobileVideoServiceImpl"/>
+    
 </beans>

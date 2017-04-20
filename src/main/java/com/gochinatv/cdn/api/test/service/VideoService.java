@@ -1,8 +1,13 @@
 package com.gochinatv.cdn.api.test.service;
 
+import java.util.List;
 
 
 public interface VideoService {
 
-	public int getCache();
+	List<String> getVideoList();
+	
+    int getCache();
+	
+    String createMessage();
 }
