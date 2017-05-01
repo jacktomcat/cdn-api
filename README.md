@@ -78,11 +78,15 @@ Accept application/json   输出json
 ### 其他
  + ajax 非responseBody形式返回，而是返回jsp页面的形式index.jsp -> ajax_result.jsp
  + hashset 测试对象是否有重复，重写hashcode和equals方法  -> 测试用例TestSetUser.java
+ + java深度copy 嵌套对象的hashcode，equals  com.gochinatv.cdn.api.test.maincase.EntityDepthComparison
  + java的 addShutdownHook 现在为止还有一个bug未解决 参见：com.gochinatv.cdn.api.framework.HookThreadService、HookJVMThread
 
 
 ### TODO
 ```
 ServletRequestListener request 模式监控 通过浏览器request的创建和销毁
+jvm 堆内存，栈内存溢出解决方案
+zookeeper 主从的task任务测试
+read write lock synchronized 测试区别
 ```
 ####1、spring shiro cas单点登录

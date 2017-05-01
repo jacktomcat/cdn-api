@@ -29,4 +29,6 @@ public class ConstantUtils {
 	//public static final String SECURITY_PLAY_URL = "CDN_API:SECURITY_PLAY_URL_{%s}";
 	public static final String SECURITY_PLAY_URL = "CDN_API:SECURITY_PLAY_URL_{%s}";
 	
+	
+	public static String sessionId = "";
 }
