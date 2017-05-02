@@ -50,7 +50,9 @@ mvn clean package -P prod
    + Locale 语言设置<br/>
    + TimeZone时区设置<br/>
 4、spring bean scope(singleton,request,prototype,session) 区别 -> IndexController 可以使用ab测试<br/>
-5、spring @Value 在properties文件里面对 ``String```,  ``` Array ```, ```List```, ``` Map``,  的动态解析的支持
+5、spring @Value 在properties文件里面对 ``String```,  ``` Array ```, ```List```, ``` Map``,  的动态解析的支持<br/>
+6、<bean id="wrapperVideo" abstract="true" class="com.gochinatv.cdn.api.test.service.WrapperVideo" init-method="init"/>
+   抽象类的abstract
 
 ### git分支创建并合并
 ```
@@ -89,4 +91,5 @@ jvm 堆内存，栈内存溢出解决方案
 zookeeper 主从的task任务测试
 read write lock synchronized 测试区别
 ```
+
 ####1、spring shiro cas单点登录

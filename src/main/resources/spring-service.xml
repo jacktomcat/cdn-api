@@ -18,8 +18,10 @@
        <property name="cache" value="50"/>
     </bean>
     
-    <bean id="h5VideoServiceImpl" class="com.gochinatv.cdn.api.test.service.impl.H5VideoServiceImpl"/>
+    <bean id="wrapperVideo" abstract="true" class="com.gochinatv.cdn.api.test.service.WrapperVideo" init-method="init"/>
     
-    <bean id="mobileVideoServiceImpl" class="com.gochinatv.cdn.api.test.service.impl.MobileVideoServiceImpl"/>
+    <bean id="h5VideoServiceImpl" class="com.gochinatv.cdn.api.test.service.impl.H5VideoServiceImpl" parent="wrapperVideo"/>
+    
+    <bean id="mobileVideoServiceImpl" class="com.gochinatv.cdn.api.test.service.impl.MobileVideoServiceImpl" parent="wrapperVideo"/>
     
 </beans>

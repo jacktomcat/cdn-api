@@ -19,6 +19,11 @@ public abstract class WrapperVideo implements VideoService{
 		return targetName + ": 抽象类中的部分实现";
 	}
 	
+	public void init(){
+		String targetName = this.setTargetName();
+		System.out.println("***init**:"+targetName);
+	}
+	
 	public abstract String setTargetName();
 
 	public void setCache(int cache) {
