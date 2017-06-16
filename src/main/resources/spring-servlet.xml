@@ -76,9 +76,7 @@
     
     <bean id="localCacheImpl" class="com.gochinatv.cdn.api.service.impl.LocalCacheImpl" init-method="init">
        <property name="importPath" value="/dev/hour/export"/>
-       <property name="export" value="/Users/zhuhuihui/baseline/export"/>
-       <property name="exportHour" value="/Users/zhuhuihui/baseline/export_hour"/>
-       <property name="exportWeek" value="/Users/zhuhuihui/baseline/export_week"/>
+       <property name="expire" value="1000"/>
     </bean>
     
 </beans>
