@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  *  ```If present and set to false, 
  *   the bean will be instantiated on startup by bean factories that perform eager initialization of singletons```
  *   
- * @author zhuhh
+ * @author zhu
  *
  */
 @Lazy(false)
