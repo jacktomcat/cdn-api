@@ -20,6 +20,8 @@ public class HttpClientTestSessionController extends BaseHandler{
 	@RequestMapping("/android")
 	@ResponseBody
 	public String android(HttpServletRequest request) {
+		Map<String, String[]> parameterMap = request.getParameterMap();
+		System.out.println("获取的参数为:"+parameterMap.toString());
 		String returnMessage = "";
 		String mark = (String)request.getSession().getAttribute("android");
 		if(!StringUtils.isEmpty(mark)){
