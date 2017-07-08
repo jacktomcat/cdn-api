@@ -33,6 +33,13 @@ public class CdnEncryptionServiceImpl implements CdnEncryptionService{
 	private int number = 0;
 	
 	public void testScope(){
+		synchronized (this){
+			try {
+				Thread.sleep(1000L);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		number++;
 		System.out.println("============service number=======:"+number);
 	}
