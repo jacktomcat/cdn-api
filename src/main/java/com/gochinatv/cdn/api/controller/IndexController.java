@@ -18,6 +18,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.gochinatv.cdn.api.controller.base.BaseHandler;
 import com.gochinatv.cdn.api.entity.User;
@@ -125,6 +126,22 @@ public class IndexController extends BaseHandler{
 		
 		//Cookie cookie = new Cookie("language", language);
 		//response.addCookie(cookie);
+		return "index";
+	}
+
+
+	/**
+	 * nginx 获取post 参数
+	 * @param data1
+	 * @param data2
+     * @return
+     */
+	@RequestMapping(value = "/postdata",method = RequestMethod.POST)
+	public String postdata(String data1,String data2,String data3) {
+		System.out.println("data1:"+data1);
+		System.out.println("data2:"+data1);
+		System.out.println("data3:"+data1);
+		System.out.println("data4:"+data1);
 		return "index";
 	}
 	
