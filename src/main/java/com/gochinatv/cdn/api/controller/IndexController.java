@@ -10,12 +10,20 @@ import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.gochinatv.cdn.api.commons.HttpClientTools;
+import com.gochinatv.cdn.api.entity.Validation;
+import com.gochinatv.cdn.api.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,6 +63,9 @@ public class IndexController extends BaseHandler{
 	
 	@Autowired
 	private LocalCacheImpl localCacheImpl;
+
+	@Autowired
+	private RedisService redisServiceImpl;
 	
 	/**
 	 * <mvc:redirect-view-controller redirect-url="/index" path="/"/>
@@ -65,12 +76,51 @@ public class IndexController extends BaseHandler{
 	@RequestMapping("/index")
 	public /*synchronized*/ String index() {
 		number++;
+
 		System.out.println("=============number===========:"+number);
 		cdnEncryptionService1.testScope();
 		cdnEncryptionService2.testScope();
+
+		try {
+			String result = HttpClientTools.Get("https://www.douban.com/");
+			System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			String result = HttpClientTools.Get("https://www.baidu.com");
+			System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return "index";
 	}
-	
+
+	/**
+	 * 必须添加 validation-api.jar和具体的实现(这里使用的是hibernte-validate的jar)
+	 * @param validation
+	 * @param result
+     * @return
+     */
+	@RequestMapping("/validate")
+	public String validate(@Validated Validation validation, BindingResult result) {
+		if(result.hasErrors()){
+			List<ObjectError> allErrors = result.getAllErrors();
+			System.out.println(allErrors.size()+"");
+			for (ObjectError error : allErrors) {
+				System.out.println(error.getCode()+" "+error.getDefaultMessage());
+			}
+
+			for (FieldError fieldError:result.getFieldErrors()) {
+				System.out.println(fieldError.getField()+"   "+ fieldError.getRejectedValue());
+			}
+
+		}
+		return "index";
+	}
+
 	@RequestMapping("/value_support")
 	public String value_support() {
 		System.out.println("==========CDN_KEY:==="+CDN_KEY.get(0)+"========"+CDN_KEY.get(1));
