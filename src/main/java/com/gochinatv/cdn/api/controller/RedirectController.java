@@ -56,10 +56,25 @@ public class RedirectController extends BaseHandler{
 		
 		return "redirect:index";
 	}
-	
-	
-	private void save(@NotNull CdnBean bean){
+
+
+	/**
+	 * java.lang.IllegalArgumentException: Argument for @NotNull parameter
+	 * 'bean' of com/gochinatv/cdn/api/controller/RedirectController.save must not be null
+	 * @param bean
+	 */
+	private static void save(@NotNull CdnBean bean){
 		System.out.println(bean);
+		//System.out.println(bean.getId());
+		//System.out.println(bean.getName());
+	}
+
+
+	public static void main(String[] args) {
+
+		CdnBean bean = null;
+		save(bean);
+
 	}
 	
 }
