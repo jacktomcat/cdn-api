@@ -17,6 +17,35 @@ function ajax_click() {
 		$("#htmls").html(data);
 	});
 }
+
+
+function cors(){
+    $.ajax({
+        url: 'http://localhost:8090/user/login',
+        type: 'POST',
+        data: {'name':'admin','password':'123'},
+        dataType:'json',
+        //headers: {'X-Requested-With':'xml'},
+        success: function(cb){
+            console.log(cb)
+        }
+        //dataType: dataType
+    });
+}
+
+
+function postJson(){
+    $.ajax({
+        url: 'postdata',
+        type: 'POST',
+        data: {'data1':'adm+in','data2':'123','data3':'ddd'},
+        dataType:'json',
+        success: function(cb){
+            console.log(cb)
+        }
+        //dataType: dataType
+    });
+}
 </script>
 </head>
 <body>
@@ -38,5 +67,9 @@ function ajax_click() {
     <!-- 测试ajax非response Body的形式返回 -->
     <a onclick="ajax_click()" href="javascript:void(0);">ajax调用</a>
     <div id="htmls"></div>
+
+    <a href="javascript:void(0);" id="cros-btn" onclick="cors()">测试跨域</a>
+
+    <a href="javascript:void(0);" id="cros-btn" onclick="postJson()">测试参数编码</a>
 </body>
 </html>

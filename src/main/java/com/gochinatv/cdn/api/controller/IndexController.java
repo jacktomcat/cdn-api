@@ -4,22 +4,21 @@ package com.gochinatv.cdn.api.controller;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gochinatv.cdn.api.commons.HttpClientTools;
 import com.gochinatv.cdn.api.entity.Validation;
 import com.gochinatv.cdn.api.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ReflectionUtils;
+import org.springframework.util.StreamUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -66,6 +65,7 @@ public class IndexController extends BaseHandler{
 
 	@Autowired
 	private RedisService redisServiceImpl;
+
 	
 	/**
 	 * <mvc:redirect-view-controller redirect-url="/index" path="/"/>
@@ -80,20 +80,6 @@ public class IndexController extends BaseHandler{
 		System.out.println("=============number===========:"+number);
 		cdnEncryptionService1.testScope();
 		cdnEncryptionService2.testScope();
-
-		try {
-			String result = HttpClientTools.Get("https://www.douban.com/");
-			System.out.println(result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			String result = HttpClientTools.Get("https://www.baidu.com");
-			System.out.println(result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 		return "index";
 	}
@@ -194,8 +180,8 @@ public class IndexController extends BaseHandler{
 		System.out.println("data4:"+data1);
 		return "index";
 	}
-	
-	
+
+
 	public static void main(String[] args) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		//TimeZone zone = TimeZone.getTimeZone("GMT+08:00");
