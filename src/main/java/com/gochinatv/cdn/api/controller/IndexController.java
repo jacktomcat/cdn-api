@@ -6,10 +6,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.gochinatv.cdn.api.commons.HttpClientTools;
 import com.gochinatv.cdn.api.entity.Validation;
 import com.gochinatv.cdn.api.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +79,20 @@ public class IndexController extends BaseHandler{
 		System.out.println("=============number===========:"+number);
 		cdnEncryptionService1.testScope();
 		cdnEncryptionService2.testScope();
+
+		try {
+			//String result = HttpClientTools.Get("https://www.douban.com/");
+			//System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			//String result = HttpClientTools.Get("https://www.baidu.com");
+			//System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		return "index";
 	}

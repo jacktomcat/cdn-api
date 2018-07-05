@@ -1,7 +1,6 @@
 package com.gochinatv.cdn.api.controller;
 
 
-import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.gochinatv.cdn.api.commons.ConstantUtils;
-import com.gochinatv.cdn.api.commons.HttpClientTools;
 import com.gochinatv.cdn.api.controller.base.BaseHandler;
 
 
