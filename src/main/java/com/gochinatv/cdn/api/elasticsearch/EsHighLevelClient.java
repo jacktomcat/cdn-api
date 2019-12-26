@@ -14,14 +14,19 @@ import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.script.Script;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.joda.time.DateTime;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
@@ -154,7 +159,18 @@ public class EsHighLevelClient {
         //https://www.cnblogs.com/sunfie/p/6653778.html
         //query.must(QueryBuilders.wildcardQuery("name","寄生*"));//模糊查询
         //query.must(QueryBuilders.matchQuery("name","寄生*"));
-        query.must(QueryBuilders.regexpQuery("name","寄生[虫]"));
+        //query.must(QueryBuilders.regexpQuery("name","寄生[虫]"));//正则
+        //query.must(QueryBuilders.scriptQuery(new Script("doc['targetType'].value")));
+        //query.must(QueryBuilders.prefixQuery("name","寄"));//以寄开头的条件进行查询
+        //query.must(QueryBuilders.idsQuery("1","2"));//按id查询
+
+        /**
+         * 说明：fuzzy才是实现真正的模糊查询，我们输入的字符可以是个大概，他可以根据我们输入的文字大概进行匹配查询，
+         * 具体可看文章中的解释和代码，注意与wildcard模糊查询的区别
+         */
+        query.must(QueryBuilders.fuzzyQuery("name","寄"));
+        //query.must(QueryBuilders.matchPhraseQuery());
+        //query.must(QueryBuilders.spanTermQuery("",""));
 
         builder.fetchSource(new String[]{"duration","plot","name","id","describe","timestamp"},null);
         SearchRequest searchRequest = new SearchRequest();
@@ -175,6 +191,63 @@ public class EsHighLevelClient {
         }
         client.close();
     }
+
+    @BeforeTest
+    public void beforeInit() {
+        initElasticSearchClient();
+    }
+
+    @Test
+    public void testInsertRoutingKey(){
+
+        try {
+            BulkRequest bulkRequest = new BulkRequest();
+            AtomicLong eventAtomic = new AtomicLong(System.currentTimeMillis());
+            for(int i=0;i<=1;i++){
+                long sid = eventAtomic.incrementAndGet();
+                Map<String, Object> data = new HashMap<>();
+                data.put("id",  sid);
+                data.put("plot", "第二级");
+                data.put("timestamp",new Date().getTime());
+                data.put("name", "zhangsan");
+                data.put("duration",100); //0和1
+                data.put("describe","第二级");
+                IndexRequest indexRequest = new IndexRequest("video_2019","_doc", ""+sid).source(data).routing("zhuhh");
+                bulkRequest.add(indexRequest);
+            }
+            client.bulk(bulkRequest);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testGetRoutingKey(){
+        SearchSourceBuilder builder = SearchSourceBuilder.searchSource().fetchSource(true);
+        BoolQueryBuilder query = boolQuery();
+        query.must(QueryBuilders.termQuery("name", "zhangsan"));
+        SearchRequest searchRequest = new SearchRequest();
+        searchRequest.indices("video_2019");
+        builder.query(query);
+        searchRequest/*.routing("zhuhh")*/.source(builder);
+
+        SearchResponse searchResponse = null;
+        try {
+            searchResponse = client.search(searchRequest);
+            SearchHits hits = searchResponse.getHits();
+            int length = hits.getHits().length;
+            Assert.assertEquals(length,1);
+            for(int i=0;i<length;i++) {
+                SearchHit hit = hits.getHits()[i];
+                System.out.println(hit.getSourceAsMap());
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }
